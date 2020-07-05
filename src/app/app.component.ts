@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AtlasTodoListComponent } from './atlas-todo-list/atlas-todo-list.component';
 
 @Component({
   selector: 'app-root',

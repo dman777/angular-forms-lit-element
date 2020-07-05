@@ -1,0 +1,13 @@
+@import '~@wellsky/atlas-ui/theming';
+/* Created mixin to load all the custom components mixin and pass theme for the project */
+@mixin apply-theme($theme) {
+    // Included mixin Atlas Components
+    @include atlas-theme($theme);
+    // Include mixin for custom component eg:
+    //@include custom-stepper-theme($theme);
+}
+
+// Include WellSky theme
+@include apply-theme($ws-light-theme);
+
+

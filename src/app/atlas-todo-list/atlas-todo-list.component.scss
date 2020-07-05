@@ -1,0 +1,15 @@
+@import '~@wellsky/atlas-ui/theming';
+
+.btn-container {
+  width: 100%;
+}
+
+
+.body {
+  backgrond: $ws-grey-light;
+}
+
+.body > div {
+  width: 80%
+}
+

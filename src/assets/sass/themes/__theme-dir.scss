@@ -1,0 +1,19 @@
+// Import your custom theme file here, if you have custom theme file. Eg:
+// @import 'light-theme.scss';
+
+// Include mixin for custom components
+@mixin model-theme($theme) {
+  // Include mixin for custom component
+  // theming for side navigation
+  @include model-side-nav-theme($theme);
+  @include model-header-theme($theme);
+  @include model-login-theme($theme);
+  @include model-tabs-theme($theme);
+  @include atlas-theme($theme);
+}
+
+// Included WellSky Light theme below:
+@include model-theme($ws-light-theme);
+
+// here you can also include custom theme defined in light-theme.scss
+// eg: @include model-theme($model-light-theme);

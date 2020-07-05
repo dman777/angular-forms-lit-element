@@ -1,0 +1,29 @@
+
+<div class="body">
+  <div class="container">
+
+    <h5 class="justify-content-start d-flex">To Do List</h5>
+    <div class="justify-content-center align-items-center  d-flex flex-column">
+
+
+      <div class="btn-container">
+        <atlas-input type="text" [formControl]="todoItem"></atlas-input>
+      </div>
+
+      <div>
+        <div *ngFor="let item of todoList">
+          <div>{{item}}</div>
+        </div>
+      </div>
+
+      <button
+        (click)="addToList()"
+        class="mr-2 text-uppercase"
+        atlas-contained-button
+        color="accent"> add to do list</button>
+
+    </div>
+
+  </div>
+</div>
+

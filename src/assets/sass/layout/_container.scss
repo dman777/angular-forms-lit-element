@@ -1,0 +1,24 @@
+body,
+html {
+  margin: 0;
+  width: 100%;
+}
+
+.model-container {
+  &.mat-sidenav-container {
+      position: absolute;
+      top: 78px;
+      bottom: 0;
+      left: 0;
+      right: 0;
+  }
+  & .mat-drawer {
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 599px) {
+  .model-container {
+    top: 56px;
+  }
+}

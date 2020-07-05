@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "component-storybook"
+    }
+  },
+  "defaultProject": "component-storybook",
+  "cli": {
+    "analytics": "010cdb45-cc88-4fbd-a2c2-e5906b3c818e"
+  }
 }

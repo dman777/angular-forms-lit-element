@@ -1,0 +1,52 @@
+@mixin model-login-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+
+  .model-login-content {
+    & .model-login-container {
+      &.mat-sidenav-container {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+      }
+      & .mat-drawer {
+        max-width: 250px;
+      }
+    }
+    nav a, .login-sidenav div img, .login-sidenav a {
+      font-family: Roboto;
+      font-size: mat-font-size($ws-typography, button);
+      line-height: 16px;
+      font-weight: mat-font-weight($ws-typography, caption);
+      text-decoration: none;
+      color: $loginText;
+    }
+    .mat-card {
+      max-width: 402px;
+      margin: auto;
+      height: auto;
+    }
+    .mat-checkbox-layout {
+      align-items: center;
+    }
+    .forgot-link {
+      color: mat-color($accent);
+      text-decoration: none;
+    }
+    .footer-content {
+      color: $loginText;
+      a {
+        text-decoration: none;
+        color: $loginText;
+      }
+    }
+    .login-button {
+      height: 63.5px;
+      background: $loginBtn;
+    }
+  }
+}

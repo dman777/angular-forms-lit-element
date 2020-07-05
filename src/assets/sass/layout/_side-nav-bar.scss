@@ -1,0 +1,19 @@
+@mixin model-side-nav-theme($theme) {
+  $primary: map-get($theme, primary);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+
+  .side-nav {
+    background-color: mat-color($primary);
+
+    & .sidenav-item {
+      @extend .text-left;
+      @extend .d-block;
+      white-space: normal;
+      color: $white;
+      & a {
+        cursor: pointer;
+      }
+    }
+  }
+}

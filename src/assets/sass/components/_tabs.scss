@@ -1,0 +1,31 @@
+@mixin model-tabs-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+
+  .mat-tab-label {
+    font-weight: mat-font-weight($ws-typography, body-2) !important;
+    opacity: 1 !important;
+    color: $ws-grey-primary;
+    &.mat-tab-label-active {
+      color: mat-color($accent);
+    }
+  }
+
+  .mat-tab-link {
+    opacity: 1 !important;
+    color: $ws-near-black;
+    min-width: 50px !important;
+    padding: 0 12px !important;
+    &.mat-tab-label-active {
+      color: mat-color($ws-blue, 500) !important;
+    }
+  }
+  .mat-tab-links 
+  & .mat-ink-bar {
+    background-color: mat-color($ws-blue, 500) !important;
+  }
+  
+  .mat-tab-nav-bar {
+    border-bottom: none;
+  }
+}

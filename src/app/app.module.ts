@@ -8,6 +8,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AtlasTodoListComponent } from './atlas-todo-list/atlas-todo-list.component';
 import { AtlasInputModule } from '@wellsky/atlas-ui/input';
 import { AtlasButtonModule } from '@wellsky/atlas-ui/button';
+import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { AppleFormMockService } from './forms/apple-form-mock.service';
+
+
 
 @NgModule({
   declarations: [
@@ -19,7 +24,13 @@ import { AtlasButtonModule } from '@wellsky/atlas-ui/button';
     BrowserModule,
     BrowserAnimationsModule,
     AtlasInputModule,
-    AppRoutingModule
+    AtlasButtonModule,
+    AppRoutingModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+      AppleFormMockService, { dataEncapsulation: false }
+    ),
+
   ],
   providers: [],
   bootstrap: [AppComponent]

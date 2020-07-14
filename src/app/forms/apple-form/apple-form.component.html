@@ -1,0 +1,40 @@
+<div class="body">
+
+  <form [formGroup]="profile">
+    <h5>apple form</h5>
+
+    <atlas-input
+      [errors]="errorSet"
+      type="text"
+      formControlName="name"
+      label="Full name"
+      required
+      ></atlas-input>
+
+    <form formGroupName="phoneNumbers">
+      <atlas-input
+        type="tel"
+        required
+        label="Input home number"
+        fieldAppearance="fill"
+        formControlName="homePhone"
+        ></atlas-input>
+
+      <atlas-input
+        type="tel"
+        label="Input work number"
+        fieldAppearance="fill"
+        formControlName="workPhone"
+        ></atlas-input>
+    </form>
+
+  </form>
+
+  <button
+    (click)="submit()"
+    class="mr-2 text-uppercase"
+    atlas-contained-button
+    color="accent"
+  >Add ccontact</button>
+
+</div>

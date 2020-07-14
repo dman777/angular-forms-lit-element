@@ -22,7 +22,10 @@
     "@angular/platform-browser-dynamic": "~9.1.6",
     "@angular/router": "~9.1.6",
     "@wellsky/atlas-ui": "^3.0.2",
+    "angular-imask": "^6.0.5",
+    "angular-in-memory-web-api": "^0.10.0",
     "bootstrap": "^4.5.0",
+    "imask": "^6.0.5",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

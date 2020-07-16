@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsRoutingModule } from './forms-routing.module';
 import { AppleFormComponent } from './apple-form/apple-form.component';
 import { AtlasInputModule } from './input/input.module';
+import { AtlasSelectModule } from './select';
 import { AtlasButtonModule } from '@wellsky/atlas-ui/button';
 
 
@@ -13,6 +14,7 @@ import { AtlasButtonModule } from '@wellsky/atlas-ui/button';
   ],
   imports: [
     CommonModule,
+    AtlasSelectModule,
     ReactiveFormsModule,
     AtlasButtonModule,
     AtlasInputModule,

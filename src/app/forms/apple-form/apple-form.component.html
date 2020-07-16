@@ -3,6 +3,14 @@
   <form [formGroup]="profile">
     <h5>apple form</h5>
 
+    <atlas-select
+      multiple
+      formControlName="dropdown"
+      [dataSource]="selectData"
+      [fieldAppearance]="'fill'"
+      [label]="'Select Option'"
+    ></atlas-select>
+
     <atlas-input
       [errors]="errorSet"
       type="text"

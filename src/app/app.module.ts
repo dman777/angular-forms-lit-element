@@ -9,7 +9,6 @@ import { AtlasTodoListComponent } from './atlas-todo-list/atlas-todo-list.compon
 import { AtlasInputModule } from '@wellsky/atlas-ui/input';
 import { AtlasButtonModule } from '@wellsky/atlas-ui/button';
 import { HttpClientModule }    from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { AppleFormMockService } from './forms/apple-form-mock.service';
 
 
@@ -27,10 +26,6 @@ import { AppleFormMockService } from './forms/apple-form-mock.service';
     AtlasButtonModule,
     AppRoutingModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      AppleFormMockService, { dataEncapsulation: false }
-    ),
-
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,27 @@
+<span class="atlas-chip-list">
+    <mat-chip
+        class="atlas-chip"
+        matRipple
+        [matRippleDisabled]="disabled"
+        [matRippleColor]="_rippleColor"
+        [disableRipple]="disableRipple"
+        [disabled]="disabled"
+        [removable]="removable"
+        [color]="color"
+        [selectable]="selectable"
+        [selected]="selected"
+        [value]="value"
+        (removed)="!disabled && chipRemoved($event)">
+    
+        <!-- To transclude the images sent by the user -->
+        <ng-container *ngIf="image">
+                <ng-container *ngTemplateOutlet="chipImage"></ng-container>
+                <ng-template #chipImage >
+                    <img matChipAvatar *ngIf="(image.match(_imageRegex))" [src]="image"/>
+                    <mat-icon matChipAvatar *ngIf="(!image.match(_imageRegex))">{{image}}</mat-icon>
+                </ng-template>
+            </ng-container>
+        <ng-content></ng-content>
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+</span>

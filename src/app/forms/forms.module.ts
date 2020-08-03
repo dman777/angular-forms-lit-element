@@ -6,6 +6,8 @@ import { AppleFormComponent } from './apple-form/apple-form.component';
 import { AtlasInputModule } from './input/input.module';
 import { AtlasSelectModule } from './select';
 import { AtlasButtonModule } from '@wellsky/atlas-ui/button';
+import { AtlasChipsModule } from './chips';
+import { MatChipsModule } from '@angular/material/chips';
 
 
 @NgModule({
@@ -19,6 +21,8 @@ import { AtlasButtonModule } from '@wellsky/atlas-ui/button';
     AtlasButtonModule,
     AtlasInputModule,
     FormsRoutingModule,
+    AtlasChipsModule,
+    MatChipsModule,
   ]
 })
 export class FormsModule { }

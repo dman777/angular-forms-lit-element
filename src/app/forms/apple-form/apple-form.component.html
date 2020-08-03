@@ -1,44 +1,27 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
 <div class="body">
 
   <form [formGroup]="profile">
     <h5>apple form</h5>
 
-    <atlas-select
-      multiple
-      formControlName="dropdown"
-      [dataSource]="selectData"
-      [fieldAppearance]="'fill'"
-      [label]="'Select Option'"
-    ></atlas-select>
-
-    <atlas-input
-      [errors]="errorSet"
-      type="text"
-      formControlName="name"
-      label="Full name"
-      required
-      ></atlas-input>
-
-    <form formGroupName="phoneNumbers">
-      <atlas-input
-        type="tel"
-        required
-        label="Input home number"
-        fieldAppearance="fill"
-        formControlName="homePhone"
-        ></atlas-input>
-
-      <atlas-input
-        type="tel"
-        label="Input work number"
-        fieldAppearance="fill"
-        formControlName="workPhone"
-        ></atlas-input>
-    </form>
+    <atlas-chip-list (removed)="chipRemoved($event)">
+      <atlas-chip image="control_camera" [removable]="true">
+        Enabled
+      </atlas-chip>
+      <atlas-chip
+        image="./assets/images/develop/components/chips/wellsky_crown.svg"
+        selected
+        [removable]="true">
+        Active
+      </atlas-chip>
+    </atlas-chip-list>
 
   </form>
 
   <button
+    style="margin-top: 50px"
     (click)="submit()"
     class="mr-2 text-uppercase"
     atlas-contained-button

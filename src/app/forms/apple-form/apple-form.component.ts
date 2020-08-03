@@ -4,6 +4,11 @@ import { Validators } from '@angular/forms';
 import { UserValidators } from './user-validator.service';
 import { AtlasFormFieldErrors } from '@wellsky/atlas-ui/core';
 import { AtlasSelectDataSource } from '../select';
+import { HttpClient } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
+import { map, switchMap  } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-apple-form',
@@ -16,77 +21,34 @@ export class AppleFormComponent implements OnInit {
   errorSet: AtlasFormFieldErrors;
   selectData: AtlasSelectDataSource[];
 
-  required: boolean;
-  defaultOption: string;
-  multiple: boolean;
-  selected: boolean;
-  disabled: boolean;
-  labelText: string;
+  public order = { status: 0};
 
 
   profile = this.fb.group({
     dropdown: [
-      '',
     ],
-    name: [
-      '',
-      [ Validators.required ],
-      this.userValidateService.validateUser(),
-    ],
-
-    phoneNumbers: this.fb.group({
-      homePhone: [
-        '',
-        [ Validators.required ],
-      ],
-      workPhone: [''],
-    }),
   });
 
+  runAjax() {
+    this.http.get('https://api.npms.io/v2/search?q=scope:angular')
+      .subscribe(res => {
+        console.log('aaa');
+        this.order = Object.assign({}, this.order, {status: 1})
+      })
+  }
+
+  public chipRemoved(removedEvent: any): void {
+    // Emitted event details can be fetched here
+  }
+
   submit() {
-    console.log(this.profile.get('name'));
-    //this.userValidateService.searchUser('bob');
+    this.runAjax();
   }
 
   constructor(
     private fb: FormBuilder,
-    private userValidateService: UserValidators,
+    private http: HttpClient,
   ) {
-    this.errorSet = new AtlasFormFieldErrors();
-
-    this.errorSet.setError('userNameExists', 'user already exists')
-
-     this.defaultOption = 'Select Option';
-
-     this.selectData = [
-      {
-          label: 'Subzero - No Group',
-          value: '1'
-      },
-      {
-          label: 'Lancer  - No Group',
-          value: '2',
-      },
-      {
-          label: 'Assault',
-          value: [
-              {
-                  label: 'Bangalore',
-                  value: '3'
-              },
-              {
-                  label: 'Mirage ',
-                  value: '4 '
-              },
-              {
-                  label: 'Octane',
-                  value: '5'
-              }
-
-          ]
-      }
-     ];
-
   }
 
 

@@ -5,27 +5,31 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AtlasTodoListComponent } from './atlas-todo-list/atlas-todo-list.component';
 import { AtlasInputModule } from '@wellsky/atlas-ui/input';
-import { AtlasButtonModule } from '@wellsky/atlas-ui/button';
 import { HttpClientModule }    from '@angular/common/http';
-import { AppleFormMockService } from './forms/apple-form-mock.service';
-
-
+import { CommonModule } from '@angular/common';
+import { AtlasSelectModule } from './select';
+import { AtlasButtonModule } from '@wellsky/atlas-ui/button';
+import { AtlasChipsModule } from './chips';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AtlasTodoListComponent,
   ],
   imports: [
     ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
     AtlasInputModule,
-    AtlasButtonModule,
     AppRoutingModule,
     HttpClientModule,
+    CommonModule,
+    AtlasSelectModule,
+    AtlasButtonModule,
+    AtlasChipsModule,
+    MatChipsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

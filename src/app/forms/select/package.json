@@ -1,8 +1,0 @@
-{
-    "name": "@wellsky/atlas-ui/select",
-    "ngPackage": {
-        "lib": {
-            "entryFile": "public_api.ts"
-        }
-    }
-}

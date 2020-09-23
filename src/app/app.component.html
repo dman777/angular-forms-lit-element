@@ -1,3 +1,35 @@
 <router-outlet></router-outlet>
 
+<div class="body">
+
+  <form [formGroup]="form">
+    <h5>apple form</h5>
+
+    <atlas-select
+      multiple
+      formControlName="dropdown"
+      [dataSource]="selectData"
+      [fieldAppearance]="'fill'"
+      [label]="'Select Option'"
+    ></atlas-select>
+
+    <atlas-input
+      type="tel"
+      required
+      label="Input home number"
+      fieldAppearance="fill"
+      formControlName="phone"
+     ></atlas-input>
+  </form>
+
+  <button
+    (click)="submit()"
+    class="mr-2 text-uppercase"
+    atlas-contained-button
+    color="accent"
+  >Add ccontact</button>
+
+
+</div>
+
 

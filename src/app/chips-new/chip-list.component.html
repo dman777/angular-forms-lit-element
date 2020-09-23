@@ -1,0 +1,10 @@
+<mat-chip-list
+    [aria-orientation]= "ariaOrientation"
+    [multiple]="multiple"
+    [selectable]="selectable"
+    class="atlas-chip-list"
+    [ngClass]="{'mat-chip-list-stacked' : ariaOrientation == 'vertical'}">
+
+  <ng-content></ng-content>
+
+</mat-chip-list>

@@ -1,0 +1,8 @@
+{
+    "name": "@wellsky/atlas-ui/chips",
+    "ngPackage": {
+        "lib": {
+            "entryFile": "public_api.ts"
+        }
+    }
+}

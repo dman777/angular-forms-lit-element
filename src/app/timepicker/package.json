@@ -1,0 +1,8 @@
+{
+    "name": "@wellsky/atlas-ui/timepicker",
+    "ngPackage": {
+        "lib": {
+            "entryFile": "public_api.ts"
+        }
+    }
+}

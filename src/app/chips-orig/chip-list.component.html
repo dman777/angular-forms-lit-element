@@ -1,0 +1,41 @@
+<ng-container class="atlas-chip-list-wrapper">
+    <mat-chip-list
+        [aria-orientation]= "ariaOrientation"
+        [multiple]="multiple"
+        [selectable]="selectable"
+        class="atlas-chip-list"
+        [ngClass]="{'mat-chip-list-stacked' : ariaOrientation == 'vertical'}">
+
+        <!-- To transclude the chips from atlas-chip -->
+        <mat-chip
+            class="atlas-chip"
+            *ngFor="let chip of chips; index as i;"
+            matRipple
+            [matRippleDisabled]="chip.disabled"
+            [matRippleColor]="_rippleColor"
+            [disableRipple]="chip.disableRipple"
+            [disabled]="chip.disabled"
+            [removable]="chip.removable"
+            [color]="chip.color"
+            [selectable]="chip.selectable"
+            [selected]="chip.selected"
+            [value]="chip.value"
+            (removed)="!chip.disabled && chipRemoved($event)">
+            
+            <!-- To transclude the images sent by the user -->
+            <ng-container *ngIf="chip.image">
+                <ng-container *ngTemplateOutlet="chipImage"></ng-container>
+                <ng-template #chipImage >
+                    <img matChipAvatar *ngIf="(chip.image.match(_imageRegex))" [src]="chip.image"/>
+                    <mat-icon matChipAvatar *ngIf="(!chip.image.match(_imageRegex))">{{chip.image}}</mat-icon>
+                </ng-template>
+            </ng-container>
+
+            <!-- To display the inner text -->
+            {{chip.textContent}}
+
+            <!-- To display the remove icon -->
+            <mat-icon matChipRemove *ngIf="chip.removable">cancel</mat-icon>
+        </mat-chip>
+    </mat-chip-list>
+</ng-container>

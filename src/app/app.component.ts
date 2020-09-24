@@ -17,27 +17,15 @@ import { AtlasSelectDataSource } from './select';
 
 export class AppComponent implements OnInit {
   errorSet: AtlasFormFieldErrors;
-  selectData: AtlasSelectDataSource[];
-  defaultOption: string;
+  formControlDemo: FormControl;
 
-
-
-
-  title = 'component-storybook';
   form = this.fb.group({
-    dropdown: [
-      '',
-    ],
-    name: [
-      '',
-      [ Validators.required ],
-    ],
-
-    phone: [
-      '',
-      [ Validators.required ],
-    ],
+    radio: [{ value: true }, []],
   })
+
+  selectedOption(e) {
+    console.log(e);
+  }
 
   submit() {
     console.log('submit');
@@ -46,18 +34,7 @@ export class AppComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
   ) {
-    this.errorSet = new AtlasFormFieldErrors();
-
-    this.errorSet.setError('userNameExists', 'user already exists')
-
-     this.defaultOption = 'Select Option';
-
-     this.selectData = [
-      {
-          label: 'Subzero - No Group',
-          value: '1'
-      },
-     ];
+    //   this.formControlDemo = new FormControl({ value: true, disabled: false }, []);
   }
 
 

@@ -1,0 +1,12 @@
+<mat-radio-group 
+  [formControl]="formControl"
+  [labelPosition]="labelPosition"
+  [name]="name" 
+  [required]="required"
+  [selected]="selectedRadioValue ? selectedRadioValue : ''"
+  [value]="value"
+  class="d-flex"
+  (change)="selectedOption($event)"
+  [ngClass]="{'flex-row' : direction == 'horizontal','flex-column' : direction == 'vertical'}">
+  <ng-content></ng-content>
+</mat-radio-group>

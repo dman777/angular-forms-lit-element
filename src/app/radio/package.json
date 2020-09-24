@@ -1,0 +1,8 @@
+{
+    "name": "@wellsky/atlas-ui/radio",
+    "ngPackage": {
+        "lib": {
+            "entryFile": "public_api.ts"
+        }
+    }
+}

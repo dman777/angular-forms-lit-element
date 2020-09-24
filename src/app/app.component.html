@@ -1,26 +1,39 @@
 <router-outlet></router-outlet>
 
 <div class="body">
-
-  <form [formGroup]="form">
     <h5>apple form</h5>
 
-    <atlas-select
-      multiple
-      formControlName="dropdown"
-      [dataSource]="selectData"
-      [fieldAppearance]="'fill'"
-      [label]="'Select Option'"
-    ></atlas-select>
+  <form [formGroup]="form">
 
-    <atlas-input
-      type="tel"
-      required
-      label="Input home number"
-      fieldAppearance="fill"
-      formControlName="phone"
-     ></atlas-input>
+    <atlas-radio-group
+      formControlName="radio"
+      name="formControlExample"
+      (change)="selectedOption($event)">
+      <atlas-radio-button
+              value="4"
+              labelPosition="after"
+              class="d-block"
+              name="formControlExample">
+              Option 1
+      </atlas-radio-button>
+      <atlas-radio-button
+              value="5"
+              labelPosition="after"
+              class="d-block"
+              name="formControlExample">
+              Option 2
+      </atlas-radio-button>
+      <atlas-radio-button
+              value="6"
+              labelPosition="after"
+              class="d-block"
+              name="formControlExample">
+              Option 3
+      </atlas-radio-button>
+    </atlas-radio-group>
+
   </form>
+
 
   <button
     (click)="submit()"

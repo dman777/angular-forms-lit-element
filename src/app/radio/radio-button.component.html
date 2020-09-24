@@ -1,0 +1,20 @@
+<mat-radio-button 
+	class="m-2 atlas-radio-button" 
+	[aria-label]="ariaLabel"
+	[aria-labelledby]="ariaLabelledby"
+	[aria-describedby]="ariaDescribedby"
+	[checked]="checked"
+	[color]="color"
+	[disableRipple]="disableRipple"
+	[id]="id"
+	inputId="inputId"
+	[labelPosition]="labelPosition ? labelPosition : 'after'"
+	[name]="name"
+	radioGroup="radioGroup ? radioGroup : ''"
+	[required]="required"
+	[value]="value"
+	(change)="selectedOption($event)"
+	[disabled]="disabled">
+	<ng-content></ng-content>
+	<div class="mat-caption" *ngIf="caption" [ngClass]="{'caption-disabled' : disabled}" [innerHTML]="caption"></div>
+</mat-radio-button>

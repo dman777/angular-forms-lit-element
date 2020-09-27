@@ -16,5 +16,5 @@
 	(change)="selectedOption($event)"
 	[disabled]="disabled">
 	<ng-content></ng-content>
-	<div class="mat-caption" *ngIf="caption" [ngClass]="{'caption-disabled' : disabled}" [innerHTML]="caption"></div>
+	<div class="mat-caption" *ngIf="caption" [innerHTML]="caption"></div>
 </mat-radio-button>

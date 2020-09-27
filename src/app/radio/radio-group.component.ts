@@ -1,5 +1,6 @@
 import {
   AfterContentInit,
+  ChangeDetectorRef,
   Component,
   ContentChildren,
   EventEmitter,
@@ -11,38 +12,52 @@ import {
   Optional,
   Self,
   AfterViewInit,
+  InjectionToken,
+  ViewChild,
 } from '@angular/core';
-import { FormControl, NgControl } from '@angular/forms';
+import {
+  NG_VALUE_ACCESSOR,
+  ControlValueAccessor,
+  FormControl,
+  NgControl,
+} from '@angular/forms';
 
 import { AtlasRadioButton } from './radio-button.component';
-import { AtlasRadioButtonConfig } from './radio-button.model';
 import { AtlasErrorsHandlerService } from '@wellsky/atlas-ui/core';
-import { MatRadioChange } from '@angular/material/radio';
+import { MatRadioChange, MatRadioGroup } from '@angular/material/radio';
 
 @Component({
   selector: 'atlas-radio-group',
   templateUrl: './radio-group.component.html',
   preserveWhitespaces: false,
-  exportAs: 'atlasRadioGroup'
+  exportAs: 'AtlasRadioGroup',
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => AtlasRadioGroup),
+    multi: true,
+  }],
 })
+
 export class AtlasRadioGroup implements AfterContentInit, AfterViewInit {
 
   private _direction: string;
   private _labelPosition: string;
   private _disabled: boolean;
+  private _value: any = null;
+  private _selected = null;
 
-  public formControl: FormControl;
   public errorsHandlerService: AtlasErrorsHandlerService;
   public radioButtons: Array<any>;
   public textContent: Array<string>;
   public selectedRadioId: any;
   public selectedRadioValue: any;
 
-  // To get the child radio buttons.
   @ContentChildren(forwardRef(() => AtlasRadioButton), { descendants: true })
   _radios: QueryList<AtlasRadioButton>;
 
-  // To set the direction of the radio group
+  @ViewChild(MatRadioGroup, {read: NG_VALUE_ACCESSOR})
+  matRadioGroupEl: ControlValueAccessor;
+
   @Input()
   public set direction(direction: string) {
     try {
@@ -59,21 +74,17 @@ export class AtlasRadioGroup implements AfterContentInit, AfterViewInit {
     return this._direction;
   }
 
-  // To set the radio group to be disabled
   @Input()
   public set disabled(disabled: boolean) {
     this._disabled = disabled;
     if (disabled) {
-      this.formControl.disable();
     } else {
-      this.formControl.enable();
     }
   }
   public get disabled(): boolean {
     return this._disabled;
   }
 
-  // To set the position for the label
   @Input()
   public set labelPosition(labelPosition: string) {
     try {
@@ -90,27 +101,31 @@ export class AtlasRadioGroup implements AfterContentInit, AfterViewInit {
     return this._labelPosition;
   }
 
-  // To set the name attribute
   @Input()
   name: string;
 
-  // To set the required indication on radio group
   @Input()
   required: boolean;
 
-  // To indicate the currently selected button
   @Input()
-  selected: AtlasRadioButtonConfig;
+  get value(): any { return this._value; }
+  set value(newValue: any) {
+    if (this._value !== newValue) {
+      this._value = newValue;
+    }
+  }
 
-  // To set the value for radio buttons
   @Input()
-  value: any;
+  get selected() { return this._selected; }
+  set selected(selected) {
+    this._selected = selected;
+    this.value = selected ? selected.value : null;
+    this._checkSelectedRadioButton();
+  }
 
-  // To return the value selected call back
   @Output()
   change = new EventEmitter<MatRadioChange>();
 
-  // To emit the selected values
   public selectedOption(event: MatRadioChange): void {
     if (this.change) {
       this.onChange(event.value);
@@ -119,39 +134,35 @@ export class AtlasRadioGroup implements AfterContentInit, AfterViewInit {
   }
 
   constructor(
-    private _injector: Injector,
-    @Optional() @Self() public ngControl: NgControl) {
-    this.formControl = new FormControl('', []);
+    private changeDetectorRef: ChangeDetectorRef,
+  ) {
     this.direction = 'horizontal';
-    this.errorsHandlerService = this._injector.get(AtlasErrorsHandlerService);
     this._labelPosition = 'after';
-
-    if (this.ngControl != null) {
-      // Setting the value accessor directly (instead of using the providers) to avoid running into a circular import.
-      this.ngControl.valueAccessor = this;
-    }
   }
 
   ngAfterViewInit() {
-     /**
-     * Listen to the changes in projected content
-     */
     this._radios.changes.subscribe(_ => {
-      this.registerRadioButtonEvents();
+      //this.registerRadioButtonEvents();
     });
+    console.log(this.matRadioGroupEl);
+    this.writeValue(true);
   }
 
   ngAfterContentInit() {
-    // contentChildren is set
-    this.radioButtons = this._radios.toArray();
-    this.registerRadioButtonEvents();
+    //this.radioButtons = this._radios.toArray();
+    //this._updateSelectedRadioFromValue();
+    //this._checkSelectedRadioButton();
+    //this.registerRadioButtonEvents();
   }
 
-  /**
-   * Register events for atlas radio button
-   */
+  _checkSelectedRadioButton() {
+    if (this._selected && !this._selected.checked) {
+      this._selected.checked = true;
+    }
+  }
+
   private registerRadioButtonEvents() {
-    if (this.selected !== undefined) {
+    if (this.selected && this.selected !== undefined) {
       this.selectedRadioId = this.selected.id;
     }
 
@@ -168,26 +179,39 @@ export class AtlasRadioGroup implements AfterContentInit, AfterViewInit {
     });
   }
 
-  // -----------ControlValueAccessor-----------------
-  // Function to call when the change detects.
-  onChange = (input: object) => { };
-  // Function to call when the input is touched.
-  onTouched = () => { };
-  // Allows Angular to update the model.
-  writeValue(input: boolean): void {
-    // Update the model and changes needed for the view here.
-    this.formControl.setValue(input);
+  private _updateSelectedRadioFromValue(): void {
+    const isAlreadySelected = this._selected !== null && this._selected.value === this._value;
+
+    if (this._radios && !isAlreadySelected) {
+      this._selected = null;
+      this._radios.forEach(radio => {
+        radio.checked = this.value === radio.value;
+        if (radio.checked) {
+          this._selected = radio;
+        }
+      });
+    }
   }
 
-  // Allows Angular to register a function to call when the model changes.
+
+  // -----------ControlValueAccessor-----------------
+  onChange = (input: object) => { };
+
+  onTouched = () => { };
+
+  writeValue(input: boolean): void {
+    if (this.matRadioGroupEl) {
+      this.matRadioGroupEl.writeValue(true);
+      this.changeDetectorRef.detectChanges();
+    }
+  }
+
   registerOnChange(fn: (input: any) => void): void {
-    // Save the function as a property to call later here.
     this.onChange = fn;
   }
   registerOnTouched(fn: any): void {
-    // throw new Error("Method not implemented.");
   }
+
   setDisabledState?(isDisabled: boolean): void {
-    // throw new Error("Method not implemented.");
   }
 }

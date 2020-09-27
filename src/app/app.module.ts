@@ -12,7 +12,8 @@ import { AtlasSelectModule } from './select';
 import { AtlasButtonModule } from '@wellsky/atlas-ui/button';
 import { AtlasChipsModule } from './chips';
 
-import { AtlasRadioModule } from '@wellsky/atlas-ui/radio';
+import { AtlasRadioModule } from './radio';
+
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';

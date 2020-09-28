@@ -1,9 +1,0 @@
-.model-stepper {
-  &.mat-stepper-horizontal, 
-    &.mat-stepper-vertical {
-    background-color: inherit !important;
-  }
-  & .mat-horizontal-stepper-content{
-    overflow: initial !important;
-  }
-}

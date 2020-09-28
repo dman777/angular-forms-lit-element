@@ -1,18 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {
+  NgModule,
+  CUSTOM_ELEMENTS_SCHEMA,
+} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AtlasInputModule } from '@wellsky/atlas-ui/input';
 import { HttpClientModule }    from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { AtlasSelectModule } from './select';
-import { AtlasButtonModule } from '@wellsky/atlas-ui/button';
-import { AtlasChipsModule } from './chips';
-
-import { AtlasRadioModule } from './radio';
 
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -48,23 +45,20 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatChipsModule } from '@angular/material/chips';
+import { CustomCVA } from './custom-cva.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
+    CustomCVA,
   ],
   imports: [
     ReactiveFormsModule,
-    AtlasRadioModule,
     BrowserModule,
     BrowserAnimationsModule,
-    AtlasInputModule,
     AppRoutingModule,
     HttpClientModule,
     CommonModule,
-    AtlasSelectModule,
-    AtlasButtonModule,
-    AtlasChipsModule,
     MatAutocompleteModule,
     MatButtonModule,
     MatCheckboxModule,
@@ -100,6 +94,9 @@ import { MatChipsModule } from '@angular/material/chips';
     MatBadgeModule,
     MatTooltipModule,
     MatTreeModule,
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ],
   providers: [],
   bootstrap: [AppComponent]

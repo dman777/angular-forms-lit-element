@@ -5,25 +5,34 @@
 
   <form [formGroup]="form">
 
-    <atlas-radio-group
+    <mat-radio-group
       formControlName="radio"
       name="formControlExample"
       (change)="selectedOption($event)">
-      <atlas-radio-button
+      <mat-radio-button
               value="true"
               labelPosition="after"
               class="d-block"
               name="formControlExample">
               Option 1
-      </atlas-radio-button>
-      <atlas-radio-button
+      </mat-radio-button>
+      <mat-radio-button
               value="false"
               labelPosition="after"
               class="d-block"
               name="formControlExample">
               Option 2
-      </atlas-radio-button>
-    </atlas-radio-group>
+      </mat-radio-button>
+    </mat-radio-group>
+
+    <br>
+
+    <lit-time-picker
+      formControlName="time"
+      (time-changed)="updateTimeDisplay($event)"
+    ></lit-time-picker>
+
+    <br>
 
   </form>
 
@@ -31,7 +40,7 @@
   <button
     (click)="submit()"
     class="mr-2 text-uppercase"
-    atlas-contained-button
+    mat-contained-button
     color="accent"
   >Add ccontact</button>
 

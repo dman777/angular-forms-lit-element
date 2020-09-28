@@ -1,12 +1,11 @@
+import './lit-time-picker/lit-time-picker';
+
 import {
   Component,
   OnInit,
 } from '@angular/core';
 
-import { FormBuilder, FormControl, ControlValueAccessor } from '@angular/forms';
-import { Validators } from '@angular/forms';
-import { AtlasFormFieldErrors } from '@wellsky/atlas-ui/core';
-import { AtlasSelectDataSource } from './select';
+import { FormBuilder, FormControl, ControlValueAccessor, Validators } from '@angular/forms';
 
 
 @Component({
@@ -16,11 +15,13 @@ import { AtlasSelectDataSource } from './select';
 })
 
 export class AppComponent implements OnInit {
-  errorSet: AtlasFormFieldErrors;
   formControlDemo: FormControl;
+  private _newTimeISO: string;
+  private _newTime: string;
 
   form = this.fb.group({
     radio: ['true'],
+    time: ['2020-05-04T05:33:21.511Z'],
   })
 
   selectedOption(e) {
@@ -29,6 +30,27 @@ export class AppComponent implements OnInit {
 
   submit() {
     //console.log('submit');
+  }
+
+  updateTimeDisplay(e) {
+    this.newTimeISO = e.detail.timeStampISO;
+    this.newTime = e.detail.momentObj.format('hh:mm:ss A');
+  }
+
+  public get newTimeISO():string {
+    return this._newTimeISO;
+  }
+
+  public get newTime():string {
+    return this._newTime;
+  }
+
+  public set newTimeISO(value:string) {
+    this._newTimeISO = value;
+  }
+
+  public set newTime(value:string) {
+    this._newTime = value;
   }
 
   constructor(
@@ -47,6 +69,7 @@ export class AppComponent implements OnInit {
   onTouched = () => { };
 
   writeValue(input): void {
+    console.log(input);
     this.form.setValue(input, {emitEvent: false});
   }
 
@@ -59,7 +82,6 @@ export class AppComponent implements OnInit {
   setDisabledState?(isDisabled: boolean): void {
     // Not using, instead handling the event from disabled property
   }
-
 
 }
 

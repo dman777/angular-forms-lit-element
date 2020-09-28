@@ -1,9 +1,0 @@
-/*
-To create reusable mixins
-*/
-
-@mixin box-shadow($set-one, $set-two, $set-three:none) {
-  -webkit-box-shadow: $set-one, $set-two, $set-three !important;
-  -moz-box-shadow: $set-one, $set-two, $set-three !important;
-  box-shadow: $set-one, $set-two, $set-three !important;
-}

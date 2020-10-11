@@ -126,7 +126,7 @@ class TimePicker extends LitElement {
       momentObj: { type: Object },
       timeDateStamp: {
         type: String,
-        attribute: 'time-date-stamp',
+        attribute: 'value',
       },
     }
   }

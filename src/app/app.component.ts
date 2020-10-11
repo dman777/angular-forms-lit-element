@@ -5,7 +5,9 @@ import {
   OnInit,
 } from '@angular/core';
 
-import { FormBuilder, FormControl, ControlValueAccessor, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import {ControlValueAccessor} from './control_value_accessor';
+
 
 
 @Component({
@@ -28,7 +30,7 @@ export class AppComponent implements OnInit {
   }
 
   submit() {
-    //console.log('submit');
+    console.log(this.form);
   }
 
   updateTimeDisplay(e) {

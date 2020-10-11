@@ -5,31 +5,10 @@
 
   <form [formGroup]="form">
 
-    <mat-radio-group
-      formControlName="radio"
-      name="formControlExample"
-      (change)="selectedOption($event)">
-      <mat-radio-button
-              value="true"
-              labelPosition="after"
-              class="d-block"
-              name="formControlExample">
-              Option 1
-      </mat-radio-button>
-      <mat-radio-button
-              value="false"
-              labelPosition="after"
-              class="d-block"
-              name="formControlExample">
-              Option 2
-      </mat-radio-button>
-    </mat-radio-group>
-
     <br>
 
     <lit-time-picker
       formControlName="time"
-      (time-changed)="updateTimeDisplay($event)"
     ></lit-time-picker>
 
     <br>

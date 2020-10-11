@@ -20,7 +20,6 @@ export class AppComponent implements OnInit {
   private _newTime: string;
 
   form = this.fb.group({
-    radio: ['true'],
     time: ['2020-05-04T05:33:21.511Z'],
   })
 
